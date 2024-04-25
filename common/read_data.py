@@ -12,7 +12,9 @@ class MyConfigParser(ConfigParser):
     def optionxform(self, optionstr):
         return optionstr
 
+
 class ReadFileData():
+    """读取文件封装"""
 
     def __init__(self):
         pass
@@ -38,5 +40,6 @@ class ReadFileData():
         data = dict(config._sections)
         # print("读到数据 ==>>  {} ".format(data))
         return data
+
 
 data = ReadFileData()

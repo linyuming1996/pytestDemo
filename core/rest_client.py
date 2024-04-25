@@ -4,7 +4,7 @@ from common.logger import logger
 
 
 class RestClient():
-
+    """"request请求方式封装"""
     def __init__(self, api_root_url):
         self.api_root_url = api_root_url
         self.session = requests.session()
@@ -21,8 +21,8 @@ class RestClient():
     def delete(self, url, **kwargs):
         return self.request(url, "DELETE", **kwargs)
 
-    def patch(self, url, data=None, **kwargs):
-        return self.request(url, "PATCH", data, **kwargs)
+    # def patch(self, url, data=None, **kwargs):
+    #     return self.request(url, "PATCH", data, **kwargs)
 
     def request(self, url, method, data=None, json=None, **kwargs):
         url = self.api_root_url + url
