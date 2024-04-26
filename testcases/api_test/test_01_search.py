@@ -20,17 +20,18 @@ def step_1():
 @allure.epic("针对单个接口的测试")
 @allure.feature("查询用户邮件")
 class TestSearchMails():
-    """修改用户"""
+    """查询成员邮件"""
 
-    @allure.story("用例--修改用户信息")
+    @allure.story("用例--查询成员邮件")
     @allure.description("该用例是针对获取用户修改接口的测试")
-    @allure.issue("https://www.cnblogs.com/wintest", name="点击，跳转到对应BUG的链接地址")
+    @allure.issue("https://www.email.wps.cn", name="点击，跳转到对应BUG的链接地址")
     @allure.testcase("https://www.cnblogs.com/wintest", name="点击，跳转到对应用例的链接地址")
-    @allure.title("测试数据：【 {id}，{new_password}，{new_telephone}，{new_sex}，{new_address}，{except_result}，{except_code}，{except_msg}】")
+    @allure.title("测试用例：【查询成员邮件】")
     @pytest.mark.single
-    @pytest.mark.parametrize("id, new_password, new_telephone, new_sex, new_address, "
-                             "except_result, except_code, except_msg",
-                             api_data["test_update_user"])
+    @pytest.mark.parametrize("mailbox_ids, start_time, end_time, folders, filters,has_attachment,send,to,subject,"
+                             "body, attachment, keyword, with_body, with_category, page_size, page_token, "
+                             "except_result,except_code,except_msg",
+                             api_data["test_search_mails"])
     # @pytest.mark.usefixtures("update_user_telephone")
     def test_SearchMails(self, mailbox_ids, start_time, end_time, folders, filters, has_attachment, send, to, subject,
                          body, attachment, keyword, with_body, with_category, page_size, page_token, except_result,
@@ -49,4 +50,4 @@ class TestSearchMails():
 
 
 if __name__ == '__main__':
-    pytest.main(["-q", "-s", "test_01_search.py"])
+    pytest.main(["-q", "-s"])

@@ -1,8 +1,6 @@
 #init_admin_user:
 #  username: "wintest"
 #  password: "123456"
-init_mail_user:
-  mailboxs_id：123456
 
 #init_sql:
 #  insert_delete_user:

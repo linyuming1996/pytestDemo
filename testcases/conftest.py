@@ -1,8 +1,8 @@
 import pytest
 import os
 import allure
-from api.user import user
-from common.mysql_operate import db
+# from api.user import user
+# from common.mysql_operate import db
 from common.read_data import data
 from common.logger import logger
 
@@ -35,25 +35,25 @@ def step_last():
     logger.info("后置步骤开始 ==>> 清理数据")
 
 
-@allure.step("前置步骤 ==>> 管理员用户登录")
-def step_login(username, password):
-    logger.info("前置步骤 ==>> 管理员 {} 登录，返回信息 为：{}".format(username, password))
+# @allure.step("前置步骤 ==>> 管理员用户登录")
+# # def step_login(username, password):
+# #     logger.info("前置步骤 ==>> 管理员 {} 登录，返回信息 为：{}".format(username, password))
 
 
-@pytest.fixture(scope="session")
-def login_fixture():
-    username = base_data["init_admin_user"]["username"]
-    password = base_data["init_admin_user"]["password"]
-    header = {
-        "Content-Type": "application/x-www-form-urlencoded"
-    }
-    payload = {
-        "username": username,
-        "password": password
-    }
-    loginInfo = user.login(data=payload, headers=header)
-    step_login(username, password)
-    yield loginInfo.json()
+# @pytest.fixture(scope="session")
+# def login_fixture():
+#     username = base_data["init_admin_user"]["username"]
+#     password = base_data["init_admin_user"]["password"]
+#     header = {
+#         "Content-Type": "application/x-www-form-urlencoded"
+#     }
+#     payload = {
+#         "username": username,
+#         "password": password
+#     }
+#     loginInfo = user.login(data=payload, headers=header)
+#     step_login(username, password)
+#     yield loginInfo.json()
 
 
 # @pytest.fixture(scope="function")

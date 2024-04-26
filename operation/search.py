@@ -1,6 +1,12 @@
 from core.result_base import ResultBase
 from api.search import search
 from common.logger import logger
+from common.read_data import data
+import os
+
+BASE_PATH = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))  # 基础路径
+data_file_path = os.path.join(BASE_PATH, "config", "setting.ini")  # 配置文件路径
+sid = data.load_ini(data_file_path)["user"]["sid"]  # 基础url基础url
 
 
 def search_mails(mailbox_ids, start_time, end_time, folders, filters, has_attachment, send, to, subject, body,
@@ -15,26 +21,27 @@ def search_mails(mailbox_ids, start_time, end_time, folders, filters, has_attach
     :param filter: Items Enum: "unread" "flagged"邮件筛选条件，默认为all
     :param has_attachment: true筛选包含附件，false筛选不包含附件。默认不筛选
     :param send: 发件人搜索,支持邮箱地址、用户名搜索，默认不筛选，多个使用空格分割
-    :param to: 发件人搜索,支持邮箱地址、用户名搜索，默认不筛选，多个使用空格分割
-    :param subject: 发件人搜索,支持邮箱地址、用户名搜索，默认不筛选，多个使用空格分割
-    :param body: 发件人搜索,支持邮箱地址、用户名搜索，默认不筛选，多个使用空格分割
-    :param attachment: 发件人搜索,支持邮箱地址、用户名搜索，默认不筛选，多个使用空格分割
-    :param keyword: 发件人搜索,支持邮箱地址、用户名搜索，默认不筛选，多个使用空格分割
-    :param with_body: 发件人搜索,支持邮箱地址、用户名搜索，默认不筛选，多个使用空格分割
-    :param with_category: 发件人搜索,支持邮箱地址、用户名搜索，默认不筛选，多个使用空格分割
-    :param page_size: 发件人搜索,支持邮箱地址、用户名搜索，默认不筛选，多个使用空格分割
-    :param page_token: 发件人搜索,支持邮箱地址、用户名搜索，默认不筛选，多个使用空格分割
-    :param token: 用户token
+    :param to: 收件人搜索，支持邮箱地址、用户名搜索，默认不筛选，这里包含收件人，抄送，密送人搜索，多个使用空格分割
+    :param subject: 邮件主题搜索，默认不搜索
+    :param body: 邮件正文搜索，支持模糊搜索，默认不搜索
+    :param attachment: 邮件附件名称搜索,支持模糊搜索，默认不搜索
+    :param keyword: 关键字搜索,支持模糊搜索
+    :param with_body: 是否需要邮件体。默认返回的body字段为空串
+    :param with_category: 是否需要分类字段。默认不返回categories字段
+    :param page_size: 分页大小，默认取10
+    :param page_token: 翻页token，首次无需提供
+    :param sid: 用户token
     :return: 自定义的关键字返回结果 result
     """
     result = ResultBase()
     header = {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "cookie": sid
     }
     json_data = {
-        "mailbox_ids": mailbox_ids,
-        "start_time": start_time,
-        "end_time": end_time,
+        "mailbox_ids": int(mailbox_ids),
+        "start_time": int(start_time),
+        "end_time": int(end_time),
         "folders": folders,
         "filter": filters,
         "has_attachment": has_attachment,
@@ -47,10 +54,10 @@ def search_mails(mailbox_ids, start_time, end_time, folders, filters, has_attach
         "with_body": with_body,
         "with_category": with_category,
         "page_size": page_size,
-        "page_token":page_token
-
+        "page_token": page_token
     }
-    res = search.search(mailbox_ids, json=json_data, headers=header, )
+    res = search.search(json=json_data, headers=header)
+    logger.info("查询邮件==>>请求体==>> {}".format(res.request.body))
     result.success = False
     if res.json()["code"] == 0:
         result.success = True
@@ -60,6 +67,5 @@ def search_mails(mailbox_ids, start_time, end_time, folders, filters, has_attach
     result.response = res
     logger.info("查询邮件 ==>> 返回结果 ==>> {}".format(result.response.text))
     return result
-
 
 
