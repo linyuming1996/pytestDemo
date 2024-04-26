@@ -7,13 +7,13 @@ data_file_path = os.path.join(BASE_PATH, "config", "setting.ini")  # 配置文�
 api_root_url = data.load_ini(data_file_path)["host"]["api_root_url"]  # 基础url
 
 
-class Search(RestClient):
+class Search_mails(RestClient):
 
     def __init__(self, api_root_url, **kwargs):
-        super(Search, self).__init__(api_root_url, **kwargs)
+        super(Search_mails, self).__init__(api_root_url, **kwargs)
 
     def search(self, **kwargs):
         return self.get("/v7/mail_messages/search", **kwargs)
 
 
-search = Search(api_root_url)
+search = Search_mails(api_root_url)

@@ -3,9 +3,9 @@ test_get_all_user_info:
   # except_result, except_code, except_msg
   - [True, 0, "查询成功"]
 
-test_search:
+test_search_all_mails:
   #
-  - ["", True, 0, "查询成功"]
+  - ["", True, 0, "OK"]
   - ["wintest1111", False, "1004", "查不到相关用户"]
 
 #test_get_get_one_user_info:
