@@ -1,7 +1,8 @@
 from core.result_base import ResultBase
-from api.search import search
+from api.search import Searchmails
 from common.logger import logger
 from common.read_data import data
+import json
 import os
 
 BASE_PATH = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))  # 基础路径
@@ -36,12 +37,14 @@ def search_mails(mailbox_ids, start_time, end_time, folders, filters, has_attach
     result = ResultBase()
     header = {
         "Content-Type": "application/json",
-        "cookie": sid
+        "cookie": sid,
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
+                      "Chrome/124.0.0.0 Safari/537.36 "
     }
     json_data = {
-        "mailbox_ids": int(mailbox_ids),
-        "start_time": int(start_time),
-        "end_time": int(end_time),
+        "mailbox_ids": mailbox_ids,
+        "start_time": start_time,
+        "end_time": end_time,
         "folders": folders,
         "filter": filters,
         "has_attachment": has_attachment,
@@ -56,7 +59,9 @@ def search_mails(mailbox_ids, start_time, end_time, folders, filters, has_attach
         "page_size": page_size,
         "page_token": page_token
     }
-    res = search.search(json=json_data, headers=header)
+    res = Searchmails.search(headers=header, json=json.dumps(json_data))
+    logger.info("查询邮件==>>请求json==>> {}".format(json_data))
+    logger.info("查询邮件==>>请求头==>> {}".format(res.request.headers))
     logger.info("查询邮件==>>请求体==>> {}".format(res.request.body))
     result.success = False
     if res.json()["code"] == 0:
@@ -67,5 +72,3 @@ def search_mails(mailbox_ids, start_time, end_time, folders, filters, has_attach
     result.response = res
     logger.info("查询邮件 ==>> 返回结果 ==>> {}".format(result.response.text))
     return result
-
-

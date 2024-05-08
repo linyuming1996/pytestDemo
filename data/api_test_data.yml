@@ -1,7 +1,7 @@
 test_search_mails:
   # mailbox_ids,start_time,end_time,folders,filters,has_attachment,send,to,subject,body,attachment,keyword,with_body,with_category,page_size,page_token,except_result, except_code, except_msg
-  - [32895,1,1895170115,"","","","","","","","","","","","","",True, 0, "OK"]
-  - [32895,2,1895170115,"","","","","","","","","","","","","",True, 0, "OK"]
+  - [32895,1,1895170115,"","","","","","","","","","","","","",True, 0, "ok"]
+  - [32895,2,1895170115,"","","","","","","","","","","","","",True, 0, "ok"]
 
 
 

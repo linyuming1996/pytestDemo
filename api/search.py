@@ -16,4 +16,4 @@ class Search_mails(RestClient):
         return self.get("/v7/mail_messages/search", **kwargs)
 
 
-search = Search_mails(api_root_url)
+Searchmails = Search_mails(api_root_url)

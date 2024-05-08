@@ -1,0 +1,35 @@
+INFO     log:test_01_search.py:39 *************** 开始执行用例 ***************
+INFO     log:test_01_search.py:11 步骤1 ==>> 登录邮箱
+INFO     log:search.py:59 json-data{'mailbox_ids': 32895, 'start_time': 1, 'end_time': 1895170115, 'folders': '', 'filter': '', 'has_attachment': '', 'from': '', 'to': '', 'subject': '', 'body': '', 'attachment': '', 'keyword': '', 'with_body': '', 'with_category': '', 'page_size': '', 'page_token': ''}
+INFO     log:rest_client.py:58 接口请求地址 ==>> https://api.wps.cn/v7/mail_messages/search
+INFO     log:rest_client.py:59 接口请求方式 ==>> GET
+INFO     log:rest_client.py:61 接口请求头 ==>> {
+    "Content-Type": "application/json",
+    "cookie": "wps_sid=V02SX-xZcl0aR9GuhPOAlHy5Co7ZztM00af380940010c9a17f"
+}
+INFO     log:rest_client.py:62 接口请求 params 参数 ==>> null
+INFO     log:rest_client.py:63 接口请求体 data 参数 ==>> null
+INFO     log:rest_client.py:64 接口请求体 json 参数 ==>> {
+    "mailbox_ids": 32895,
+    "start_time": 1,
+    "end_time": 1895170115,
+    "folders": "",
+    "filter": "",
+    "has_attachment": "",
+    "from": "",
+    "to": "",
+    "subject": "",
+    "body": "",
+    "attachment": "",
+    "keyword": "",
+    "with_body": "",
+    "with_category": "",
+    "page_size": "",
+    "page_token": ""
+}
+INFO     log:rest_client.py:66 接口上传附件 files 参数 ==>> None
+INFO     log:rest_client.py:67 接口 cookies 参数 ==>> null
+INFO     log:search.py:61 查询邮件==>>请求体==>> None
+INFO     log:search.py:62 查询邮件==>>请求头==>> {'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'cookie': 'wps_sid=V02SX-xZcl0aR9GuhPOAlHy5Co7ZztM00af380940010c9a17f'}
+INFO     log:search.py:70 查询邮件 ==>> 返回结果 ==>> {"code":400000003,"msg":"请求参数取值无效"}
+INFO     log:test_01_search.py:46 code ==>> 期望结果：0， 实际结果：【 400000003 】
