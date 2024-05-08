@@ -59,7 +59,7 @@ def search_mails(mailbox_ids, start_time, end_time, folders, filters, has_attach
         "page_size": page_size,
         "page_token": page_token
     }
-    res = Searchmails.search(headers=header, json=json.dumps(json_data))
+    res = Searchmails.search(headers=header, params=json_data)
     logger.info("查询邮件==>>请求json==>> {}".format(json_data))
     logger.info("查询邮件==>>请求头==>> {}".format(res.request.headers))
     logger.info("查询邮件==>>请求体==>> {}".format(res.request.body))
