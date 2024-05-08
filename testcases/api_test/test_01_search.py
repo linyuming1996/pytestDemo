@@ -23,7 +23,7 @@ class TestSearchMails():
     """查询成员邮件"""
 
     @allure.story("用例--查询成员邮件")
-    @allure.description("该用例是针对获取用户修改接口的测试")
+    @allure.description("该用例是针对查询成员邮件接口的测试")
     @allure.issue("https://www.email.wps.cn", name="点击，跳转到对应BUG的链接地址")
     @allure.testcase("https://www.cnblogs.com/wintest", name="点击，跳转到对应用例的链接地址")
     @allure.title("测试用例：【查询成员邮件】")
