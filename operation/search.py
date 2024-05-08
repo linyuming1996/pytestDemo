@@ -1,8 +1,7 @@
-from core.result_base import ResultBase
+from common.result_base import ResultBase
 from api.search import Searchmails
 from common.logger import logger
 from common.read_data import data
-import json
 import os
 
 BASE_PATH = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))  # 基础路径

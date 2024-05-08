@@ -8,7 +8,7 @@ if not os.path.exists(LOG_PATH):
 
 
 class Logger():
-
+    """日志封装"""
     def __init__(self):
         self.logname = os.path.join(LOG_PATH, "{}.log".format(time.strftime("%Y%m%d")))
         self.logger = logging.getLogger("log")

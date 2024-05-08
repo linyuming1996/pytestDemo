@@ -1,5 +1,5 @@
 import os
-from core.rest_client import RestClient
+from common.rest_client import RestClient
 from common.read_data import data
 
 BASE_PATH = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))  # 基础路径

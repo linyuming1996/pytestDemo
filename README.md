@@ -56,6 +56,3 @@ pytest
 allure serve ./report
 ```
 
-最终，可以看到测试报告的效果图如下：
-
-![image.png](https://upload-images.jianshu.io/upload_images/16853007-248f805c82dbf99c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
