@@ -2,6 +2,10 @@ import yaml
 import json
 from configparser import ConfigParser
 from common.logger import logger
+import os
+
+BASE_PATH = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))  # 基础路径
+data_file_path = os.path.join(BASE_PATH, "config", "setting.ini")  # 配置文件路径
 
 
 class MyConfigParser(ConfigParser):
@@ -43,3 +47,6 @@ class ReadFileData():
 
 
 data = ReadFileData()
+
+if __name__ == "__main__":
+    print(data_file_path)

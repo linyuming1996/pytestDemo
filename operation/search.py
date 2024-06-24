@@ -1,12 +1,12 @@
 from common.result_base import ResultBase
-from api.search import Searchmails
+from api.webmail_api import Searchmails
 from common.logger import logger
 from common.read_data import data
 import os
 
 BASE_PATH = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))  # 基础路径
 data_file_path = os.path.join(BASE_PATH, "config", "setting.ini")  # 配置文件路径
-sid = data.load_ini(data_file_path)["user"]["sid"]  # 基础url基础url
+wps_sid = 'wps_sid='+data.load_ini(data_file_path)["user"]["sid"]  # 基础url基础url
 
 
 def search_mails(mailbox_ids, start_time, end_time, folders, filters, has_attachment, send, to, subject, body,
@@ -36,7 +36,7 @@ def search_mails(mailbox_ids, start_time, end_time, folders, filters, has_attach
     result = ResultBase()
     header = {
         "Content-Type": "application/json",
-        "cookie": sid,
+        "cookie": wps_sid,
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
                       "Chrome/124.0.0.0 Safari/537.36 "
     }
@@ -58,7 +58,7 @@ def search_mails(mailbox_ids, start_time, end_time, folders, filters, has_attach
         "page_size": page_size,
         "page_token": page_token
     }
-    res = Searchmails.search(headers=header, params=json_data)
+    res = Searchmails.advance_search_mail_messages(headers=header, params=json_data)
     logger.info("查询邮件==>>请求头==>> {}".format(res.request.headers))
     result.success = False
     if res.json()["code"] == 0:

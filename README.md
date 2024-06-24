@@ -54,5 +54,6 @@ pytest
 ```
 # 需要提前配置allure环境，才可以直接使用命令行
 allure serve ./report
+allure serve ./testcases/api_test/report
 ```
 

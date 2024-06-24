@@ -23,21 +23,20 @@ class TestSearchMails():
     """查询成员邮件"""
 
     @allure.story("用例--查询成员邮件")
-    @allure.description("该用例是针对查询成员邮件接口的测试")
-    @allure.issue("https://www.email.wps.cn", name="点击，跳转到对应BUG的链接地址")
-    @allure.testcase("https://www.cnblogs.com/wintest", name="点击，跳转到对应用例的链接地址")
+    # @allure.description("该用例是针对查询成员邮件接口的测试")
+    # @allure.issue("https://www.email.wps.cn", name="点击，跳转到对应BUG的链接地址")
+    # @allure.testcase("https://www.cnblogs.com/wintest", name="点击，跳转到对应用例的链接地址")
     @allure.title("测试用例：【查询成员邮件】")
     @pytest.mark.single
     @pytest.mark.parametrize("mailbox_ids, start_time, end_time, folders, filters,has_attachment,send,to,subject,"
                              "body, attachment, keyword, with_body, with_category, page_size, page_token, "
                              "except_result,except_code,except_msg",
-                             api_data["test_search_mails"])
+                             api_data["test_SearchMails"])
     # @pytest.mark.usefixtures("update_user_telephone")
     def test_SearchMails(self, mailbox_ids, start_time, end_time, folders, filters, has_attachment, send, to, subject,
                          body, attachment, keyword, with_body, with_category, page_size, page_token, except_result,
                          except_code, except_msg):
         logger.info("*************** 开始执行用例 ***************")
-        step_1()
         result = search_mails(mailbox_ids, start_time, end_time, folders, filters, has_attachment, send, to, subject,
                               body, attachment, keyword, with_body, with_category, page_size, page_token)
         assert result.success == except_result, result.error
